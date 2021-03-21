@@ -168,17 +168,14 @@ These list the current and historical portal URL. The scripts above that harvest
 
    - **Reason** 
 
-     This is the most ambiguous one. In order to improve the efficiency of web scraping, **`timeout`** is necessary to prevent the script waiting forever. If it does not get      a response within a particular time period, just move to the next one. Failure to do so can cause the program to hang indefinitely. 
-
-<<<<<<< HEAD
+     This is the most ambiguous one. In order to improve the efficiency of web scraping, **`timeout`** is necessary to prevent the script waiting forever. If it does not get       a response within a particular time period, just move to the next one. Failure to do so can cause the program to hang indefinitely. 
+     
      The servers can become slow and unresponsive for many reasons. One reason might be the **gigantic file size**. According to the Python library [**Requests**](https://requests.readthedocs.io/en/master/user/advanced/), when making a request, the body of the response (the entire file) is downloaded immediately. But                  **`timeout`** is not a time limit on the *entire response download*; rather, an exception is raised if the server has not issued a response for **`timeout`** seconds (        more precisely, this is the time before the server sends the first byte). 
-=======
-     The servers can become slow and unresponsive for many reasons. One reason might be the **gigantic file size**. According to the Python library **`Requests`** , when          making a request, the body of the response (the entire file) is downloaded immediately. But **`timeout`** is not a time limit on the *entire response download*; rather,      an exception is raised if the server has not issued a response for **`timeout`** seconds (more precisely, this is the time before the server sends the first byte). 
->>>>>>> 59e437a0e1e8cecf3b8a2fc50dc3a22a953861ec
-
+     
    - **Solution**
-
+   
      Try setting **`timeout`** as **3 seconds** first, and push all the records with timeout error into a new list. Then increase **`timeout`** up to **10 seconds** and loop      through the list, most of the links will get a response. If still get some unresponsive ones, manually check it in case accidently delete any valid records. Those            records will be flagged in the “**Title**” column using something like “*Manually check it!*”.
+   
 
 
 
