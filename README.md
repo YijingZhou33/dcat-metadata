@@ -5,25 +5,19 @@ The scripts can also be used for any site with DCAT enabled, including some DKAN
 
 
 
-*<a href="https://github.com/BTAA-Geospatial-Data-Project/dcat-metadata/tree/Working_z">Original Repository</a>*
-
-*<a href="https://github.com/BTAA-Geospatial-Data-Project/dcat-metadata/wiki">Wiki Page</a>*
-
-
-
 ## Environment Setup
 
-We will be using **Anaconda 3** to edit and run scripts. Information on Anaconda installation can be found [here](https://docs.anaconda.com/anaconda/install/). Please note that all scripts are running on Python 3. 
+We We will be using **Anaconda 3** to edit and run scripts. Information on Anaconda installation can be found [here](https://docs.anaconda.com/anaconda/install/).  All packages available for 64-bit Windows with Python 3.7 in the Anaconda can be found [here](https://docs.anaconda.com/anaconda/packages/py3.7_win-64/). Please note that all scripts are running on Python 3 (**3.7.6**).
 
 Here are all dependencies needed to be installed properly: 
 
-- [geopandas](https://geopandas.org/getting_started/install.html) 
+- [geopandas](https://geopandas.org/getting_started/install.html) [Version: 0.7.0]
 
-- [shapely](https://pypi.org/project/Shapely/)
+- [shapely](https://pypi.org/project/Shapely/) [Version: 1.7.0]
 
-- [requests](https://requests.readthedocs.io/en/master/user/install/#install)
+- [requests](https://requests.readthedocs.io/en/master/user/install/#install) [Version: 2.22.0]
 
-- [numpy](https://numpy.org/install/)
+- [numpy](https://numpy.org/install/) [Version: 1.18.1]
 
 
 
@@ -169,13 +163,12 @@ These list the current and historical portal URL. The scripts above that harvest
    - **Reason** 
 
      This is the most ambiguous one. In order to improve the efficiency of web scraping, **`timeout`** is necessary to prevent the script waiting forever. If it does not get       a response within a particular time period, just move to the next one. Failure to do so can cause the program to hang indefinitely. 
-     
+
      The servers can become slow and unresponsive for many reasons. One reason might be the **gigantic file size**. According to the Python library [**Requests**](https://requests.readthedocs.io/en/master/user/advanced/), when making a request, the body of the response (the entire file) is downloaded immediately. But                  **`timeout`** is not a time limit on the *entire response download*; rather, an exception is raised if the server has not issued a response for **`timeout`** seconds (        more precisely, this is the time before the server sends the first byte). 
-     
+
    - **Solution**
-   
+
      Try setting **`timeout`** as **3 seconds** first, and push all the records with timeout error into a new list. Then increase **`timeout`** up to **10 seconds** and loop      through the list, most of the links will get a response. If still get some unresponsive ones, manually check it in case accidently delete any valid records. Those            records will be flagged in the “**Title**” column using something like “*Manually check it!*”.
-   
 
 
 
